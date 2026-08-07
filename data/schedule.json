@@ -1,0 +1,60 @@
+{
+  "weeklyPlan": [
+    {
+      "day": "Monday",
+      "title": "Gentle Full Body Starter",
+      "focus": "Full Body",
+      "duration": "15-20 min",
+      "intensity": "Gentle",
+      "exercises": ["chair-squat", "wall-push-up", "biceps-curl", "stretching"]
+    },
+    {
+      "day": "Tuesday",
+      "title": "Active Walk & Stretch",
+      "focus": "Cardio & Flexibility",
+      "duration": "20 min",
+      "intensity": "Light",
+      "exercises": ["walking", "stretching"]
+    },
+    {
+      "day": "Wednesday",
+      "title": "Lower Body & Stability",
+      "focus": "Legs & Balance",
+      "duration": "18-20 min",
+      "intensity": "Gentle",
+      "exercises": ["chair-squat", "glute-bridge", "standing-calf-raise", "farmer-carry"]
+    },
+    {
+      "day": "Thursday",
+      "title": "Gentle Recovery Stretch",
+      "focus": "Mobility & Relief",
+      "duration": "15 min",
+      "intensity": "Very Light",
+      "exercises": ["stretching", "walking"]
+    },
+    {
+      "day": "Friday",
+      "title": "Upper Body & Posture",
+      "focus": "Arms, Back & Shoulders",
+      "duration": "18 min",
+      "intensity": "Gentle",
+      "exercises": ["shoulder-press", "bent-over-row", "triceps-extension", "standing-calf-raise"]
+    },
+    {
+      "day": "Saturday",
+      "title": "Weekend Total Body",
+      "focus": "Strength & Endurance",
+      "duration": "20 min",
+      "intensity": "Moderate",
+      "exercises": ["goblet-squat", "wall-push-up", "farmer-carry", "stretching"]
+    },
+    {
+      "day": "Sunday",
+      "title": "Rest & Recharge",
+      "focus": "Rest & Hydration",
+      "duration": "10 min",
+      "intensity": "Rest",
+      "exercises": ["stretching"]
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+[
+  {
+    "id": "chair-squat",
+    "name": "Chair Squat",
+    "difficulty": "Beginner",
+    "muscles": ["Quadriceps", "Glutes", "Core"],
+    "equipment": "Sturdy Chair",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 45,
+    "instructions": [
+      "Stand in front of a sturdy chair with feet hip-width apart.",
+      "Lower your hips back and down slowly as if sitting in the chair.",
+      "Lightly touch the seat with your glutes without collapsing.",
+      "Press through your heels to stand back up straight."
+    ],
+    "mistakes": [
+      "Letting knees cave inward",
+      "Leaning too far forward",
+      "Plop down heavily onto the chair"
+    ],
+    "breathing": "Inhale as you sit down; exhale as you push up to standing.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><rect x='110' y='100' width='40' height='8' rx='4' fill='#8D6E63'/><rect x='142' y='108' width='8' height='55' fill='#6D4C41'/><rect x='114' y='108' width='8' height='55' fill='#6D4C41'/><rect x='142' y='50' width='8' height='55' fill='#8D6E63'/><circle cx='80' cy='52' r='14' fill='#333333'/><path d='M80 66 L80 105 L62 145' stroke='#333333' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M80 105 L95 145 L95 165' stroke='#4CAF50' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M80 75 L60 100' stroke='#333333' stroke-width='7' stroke-linecap='round' fill='none'/><circle cx='95' cy='145' r='5' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4' stroke-linecap='round'/></svg>"
+  },
+  {
+    "id": "goblet-squat",
+    "name": "Goblet Squat",
+    "difficulty": "Intermediate",
+    "muscles": ["Quadriceps", "Glutes", "Hamstrings", "Core"],
+    "equipment": "Light Dumbbell or Water Bottle",
+    "sets": 3,
+    "reps": "8-10 reps",
+    "rest": 45,
+    "instructions": [
+      "Hold a light dumbbell or water bottle close to your chest with both hands.",
+      "Stand with feet slightly wider than hip-width, toes pointing slightly out.",
+      "Bend knees and sit back, keeping chest tall and upper body upright.",
+      "Lower until thighs are parallel to ground or as far as comfortable.",
+      "Drive through heels to stand upright."
+    ],
+    "mistakes": [
+      "Rounding the upper back",
+      "Lifting heels off the ground",
+      "Holding the weight far away from chest"
+    ],
+    "breathing": "Inhale on the way down; exhale forcefully as you drive up.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='100' cy='45' r='14' fill='#333333'/><path d='M100 59 L100 105' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 105 L78 140 L75 165' stroke='#4CAF50' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M100 105 L122 140 L125 165' stroke='#4CAF50' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M100 70 L90 82 L100 85' stroke='#333333' stroke-width='6' fill='none'/><path d='M100 70 L110 82 L100 85' stroke='#333333' stroke-width='6' fill='none'/><rect x='93' y='76' width='14' height='16' rx='3' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4' stroke-linecap='round'/></svg>"
+  },
+  {
+    "id": "shoulder-press",
+    "name": "Shoulder Press",
+    "difficulty": "Beginner",
+    "muscles": ["Shoulders", "Triceps", "Upper Back"],
+    "equipment": "Chair & Light Weights (or Water Bottles)",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 30,
+    "instructions": [
+      "Sit tall in a chair with feet flat on the floor and core engaged.",
+      "Hold weights at shoulder height with elbows bent and palms facing forward.",
+      "Press the weights smoothly overhead until arms are nearly straight.",
+      "Pause briefly at top, then lower under control back to shoulders."
+    ],
+    "mistakes": [
+      "Arching the lower back backwards",
+      "Locking elbows forcefully at top",
+      "Shrugging shoulders into ears"
+    ],
+    "breathing": "Exhale as you press upward; inhale as you lower the weights.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><rect x='90' y='105' width='35' height='8' rx='3' fill='#8D6E63'/><rect x='120' y='110' width='6' height='55' fill='#6D4C41'/><rect x='92' y='110' width='6' height='55' fill='#6D4C41'/><rect x='120' y='60' width='6' height='50' fill='#8D6E63'/><circle cx='100' cy='50' r='14' fill='#333333'/><path d='M100 64 L100 110 L80 120 L80 165' stroke='#333333' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M100 70 L75 55 L75 35' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><path d='M100 70 L125 55 L125 35' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><rect x='68' y='28' width='14' height='8' rx='2' fill='#FFB74D'/><rect x='118' y='28' width='14' height='8' rx='2' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "bent-over-row",
+    "name": "Bent-over Row",
+    "difficulty": "Beginner",
+    "muscles": ["Upper Back", "Biceps", "Posture Muscles"],
+    "equipment": "Light Dumbbells or Water Bottles",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 45,
+    "instructions": [
+      "Stand with knees slightly bent and hinge at hips with back flat.",
+      "Let weights hang down toward floor with palms facing each other.",
+      "Pull elbows straight back toward hips, squeezing shoulder blades.",
+      "Lower weights back down under control without rounding back."
+    ],
+    "mistakes": [
+      "Rounding the spine into a curve",
+      "Yanking weights using momentum",
+      "Looking straight up and straining neck"
+    ],
+    "breathing": "Exhale as you pull weights toward hips; inhale as you lower.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='140' cy='60' r='14' fill='#333333'/><path d='M140 74 L100 85 L75 125 L75 165' stroke='#333333' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M105 83 L100 115' stroke='#4CAF50' stroke-width='8' stroke-linecap='round' fill='none'/><rect x='93' y='110' width='14' height='8' rx='2' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "biceps-curl",
+    "name": "Biceps Curl",
+    "difficulty": "Beginner",
+    "muscles": ["Biceps", "Forearms"],
+    "equipment": "Light Weights or Water Bottles",
+    "sets": 3,
+    "reps": "12 reps",
+    "rest": 30,
+    "instructions": [
+      "Stand tall or sit in a chair with arms at your sides holding weights.",
+      "Keep elbows tucked close to your torso.",
+      "Bend elbows and curl weights up toward shoulders.",
+      "Squeeze biceps at the top, then slowly lower back down."
+    ],
+    "mistakes": [
+      "Swinging torso forward and back",
+      "Flaring elbows away from ribs",
+      "Dropping weights quickly without control"
+    ],
+    "breathing": "Exhale while curling up; inhale while lowering down.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='100' cy='45' r='14' fill='#333333'/><path d='M100 59 L100 115 L90 165 L110 165' stroke='#333333' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M100 70 L98 95 L115 80' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='118' cy='78' r='6' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "triceps-extension",
+    "name": "Triceps Extension",
+    "difficulty": "Beginner",
+    "muscles": ["Triceps", "Arm Firmness"],
+    "equipment": "Chair & 1 Light Dumbbell or Water Bottle",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 30,
+    "instructions": [
+      "Sit upright in a chair with feet flat.",
+      "Hold one weight overhead with both hands, elbows pointing forward.",
+      "Slowly bend elbows to lower weight behind your head.",
+      "Extend arms back up overhead, squeezing back of arms."
+    ],
+    "mistakes": [
+      "Flaring elbows outwards to sides",
+      "Arching back excessively",
+      "Moving upper arms back and forth"
+    ],
+    "breathing": "Inhale as you lower behind head; exhale as you extend overhead.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><rect x='90' y='105' width='35' height='8' rx='3' fill='#8D6E63'/><rect x='120' y='110' width='6' height='55' fill='#6D4C41'/><rect x='92' y='110' width='6' height='55' fill='#6D4C41'/><circle cx='100' cy='60' r='14' fill='#333333'/><path d='M100 74 L100 110 L80 120 L80 165' stroke='#333333' stroke-width='8' fill='none'/><path d='M100 75 L102 38 L90 55' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='88' cy='58' r='6' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "glute-bridge",
+    "name": "Glute Bridge",
+    "difficulty": "Beginner",
+    "muscles": ["Glutes", "Hamstrings", "Lower Back", "Core"],
+    "equipment": "Exercise Mat or Soft Carpet",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 45,
+    "instructions": [
+      "Lie on back with knees bent and feet flat on floor, hip-width apart.",
+      "Rest arms flat by your sides with palms down.",
+      "Press heels into floor and squeeze glutes to lift hips toward ceiling.",
+      "Form a straight line from knees to shoulders, hold 1-2 sec, then lower."
+    ],
+    "mistakes": [
+      "Overarching lower back at top",
+      "Pushing off toes instead of heels",
+      "Rushing repetitions without squeezing"
+    ],
+    "breathing": "Exhale as you lift hips; inhale as you slowly lower down.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><line x1='20' y1='155' x2='180' y2='155' stroke='#A5D6A7' stroke-width='6' stroke-linecap='round'/><circle cx='45' cy='140' r='12' fill='#333333'/><path d='M57 142 L95 120 L135 125 L155 155' stroke='#4CAF50' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M57 148 L110 148' stroke='#333333' stroke-width='5' stroke-linecap='round' fill='none'/></svg>"
+  },
+  {
+    "id": "standing-calf-raise",
+    "name": "Standing Calf Raise",
+    "difficulty": "Beginner",
+    "muscles": ["Calves", "Ankle Stability", "Balance"],
+    "equipment": "Wall or Chair Back for Support",
+    "sets": 3,
+    "reps": "12-15 reps",
+    "rest": 30,
+    "instructions": [
+      "Stand tall with feet hip-width apart, holding a wall or chair back for balance.",
+      "Press down through balls of feet and raise heels high off floor.",
+      "Pause briefly at top feeling calves contract.",
+      "Lower heels back to floor slowly under control."
+    ],
+    "mistakes": [
+      "Bending knees during raise",
+      "Leaning heavily on chair for support",
+      "Bouncing fast at bottom"
+    ],
+    "breathing": "Exhale as you rise up onto toes; inhale as you lower heels.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><line x1='140' y1='40' x2='140' y2='165' stroke='#8D6E63' stroke-width='6'/><circle cx='95' cy='45' r='14' fill='#333333'/><path d='M95 59 L95 110 L95 150' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M95 120 L95 150' stroke='#4CAF50' stroke-width='10' stroke-linecap='round' fill='none'/><path d='M95 70 L130 75' stroke='#333333' stroke-width='6' stroke-linecap='round' fill='none'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "farmer-carry",
+    "name": "Farmer Carry",
+    "difficulty": "Beginner",
+    "muscles": ["Grip Strength", "Core", "Shoulders", "Posture"],
+    "equipment": "2 Grocery Bags or Dumbbells",
+    "sets": 3,
+    "reps": "30-40 seconds",
+    "rest": 45,
+    "instructions": [
+      "Hold a light weight or filled water bottle/bag in each hand at sides.",
+      "Stand tall, pull shoulders down and back, engage core.",
+      "Walk forward with slow, controlled, even steps.",
+      "Maintain upright posture without tilting or leaning."
+    ],
+    "mistakes": [
+      "Slouching or hunching shoulders forward",
+      "Swinging weights side to side",
+      "Walking too fast or taking uneven strides"
+    ],
+    "breathing": "Breathe steadily and deeply through nose throughout walk.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='100' cy='45' r='14' fill='#333333'/><path d='M100 59 L100 115 L90 165' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 115 L110 165' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 70 L80 100' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><path d='M100 70 L120 100' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><rect x='72' y='100' width='16' height='20' rx='4' fill='#FFB74D'/><rect x='112' y='100' width='16' height='20' rx='4' fill='#FFB74D'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "wall-push-up",
+    "name": "Wall Push-up",
+    "difficulty": "Beginner",
+    "muscles": ["Chest", "Shoulders", "Triceps", "Core"],
+    "equipment": "Empty Wall",
+    "sets": 3,
+    "reps": "10-12 reps",
+    "rest": 45,
+    "instructions": [
+      "Stand facing a wall about arm's length away with feet shoulder-width apart.",
+      "Place palms flat on wall at shoulder height and shoulder-width apart.",
+      "Bend elbows slowly and lower chest toward wall, keeping body straight.",
+      "Push firmly against wall to return to starting position."
+    ],
+    "mistakes": [
+      "Sagging hips forward",
+      "Flaring elbows high above shoulders",
+      "Bending only at neck instead of elbows"
+    ],
+    "breathing": "Inhale as you lower toward wall; exhale as you push away.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><line x1='160' y1='20' x2='160' y2='180' stroke='#8D6E63' stroke-width='8'/><circle cx='80' cy='55' r='14' fill='#333333'/><path d='M80 69 L100 115 L120 165' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M90 80 L158 85' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "stretching",
+    "name": "Gentle Whole Body Stretch",
+    "difficulty": "Beginner",
+    "muscles": ["Full Body", "Flexibility", "Joint Mobility"],
+    "equipment": "Mat or Chair",
+    "sets": 2,
+    "reps": "30 sec hold per stretch",
+    "rest": 20,
+    "instructions": [
+      "Reach both arms gently overhead toward ceiling, stretching spine.",
+      "Lower arms and reach across chest for shoulder stretch.",
+      "Gently tilt head side to side to relax neck tension.",
+      "Finish with gentle side bends left and right."
+    ],
+    "mistakes": [
+      "Bouncing during stretch",
+      "Holding breath",
+      "Stretching to point of pain instead of mild tension"
+    ],
+    "breathing": "Take deep, calm breaths in through nose and slow out through mouth.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='100' cy='50' r='14' fill='#333333'/><path d='M100 64 L100 120 L85 165' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 120 L115 165' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 75 L70 40' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><path d='M100 75 L130 40' stroke='#4CAF50' stroke-width='7' stroke-linecap='round' fill='none'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  },
+  {
+    "id": "walking",
+    "name": "Brisk Mindful Walk",
+    "difficulty": "Beginner",
+    "muscles": ["Heart Health", "Legs", "Endurance", "Mood"],
+    "equipment": "Comfortable Walking Shoes",
+    "sets": 1,
+    "reps": "15-20 minutes",
+    "rest": 60,
+    "instructions": [
+      "Wear supportive shoes and stand tall with shoulders relaxed.",
+      "Walk at a comfortable, brisk pace where you can still talk easily.",
+      "Swing arms gently at sides to match your stride.",
+      "Cool down last 2 minutes with slow easy pace."
+    ],
+    "mistakes": [
+      "Looking down at feet instead of ahead",
+      "Taking overly long exaggerated strides",
+      "Tensing shoulders up toward ears"
+    ],
+    "breathing": "Breathe naturally in rhythm with your footsteps.",
+    "svgIllustration": "<svg viewBox='0 0 200 200' class='svg-illustration'><rect width='200' height='200' rx='16' fill='#E8F5E9'/><circle cx='110' cy='45' r='14' fill='#333333'/><path d='M110 59 L100 110 L75 160' stroke='#333333' stroke-width='8' stroke-linecap='round' fill='none'/><path d='M100 110 L125 160' stroke='#4CAF50' stroke-width='9' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M105 70 L75 100' stroke='#333333' stroke-width='7' stroke-linecap='round' fill='none'/><path d='M105 70 L135 95' stroke='#333333' stroke-width='7' stroke-linecap='round' fill='none'/><line x1='30' y1='165' x2='170' y2='165' stroke='#A5D6A7' stroke-width='4'/></svg>"
+  }
+]

@@ -1,0 +1,63 @@
+/* FitMom High-Contrast Dark Mode Styles */
+
+body.dark-mode {
+  --background: #12181B;
+  --card-bg: #1E272C;
+  --text-main: #F3F4F6;
+  --text-muted: #9CA3AF;
+  --text-light: #6B7280;
+  
+  --border-color: #2D3748;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  
+  --primary-light: rgba(76, 175, 80, 0.15);
+  --primary-dark: #81C784;
+}
+
+body.dark-mode #app {
+  background-color: var(--background);
+  box-shadow: none;
+}
+
+body.dark-mode .app-header {
+  background-color: rgba(30, 39, 44, 0.92);
+  border-bottom-color: var(--border-color);
+}
+
+body.dark-mode .bottom-navbar {
+  background-color: #1E272C;
+  border-top-color: var(--border-color);
+}
+
+body.dark-mode .nav-item {
+  color: #9CA3AF;
+}
+
+body.dark-mode .nav-item.active {
+  color: #81C784;
+}
+
+body.dark-mode .card-accent {
+  background: linear-gradient(135deg, #2D271E 0%, #3D3222 100%);
+  border-color: #4A3A25;
+}
+
+body.dark-mode .svg-illustration-wrapper {
+  background: #27343A;
+}
+
+body.dark-mode .input-field {
+  background-color: #1A2226;
+  color: #FFFFFF;
+}
+
+body.dark-mode .water-cup-btn {
+  background-color: #1A2836;
+  border-color: #1E4976;
+}
+
+body.dark-mode .water-cup-btn.filled {
+  background-color: #1976D2;
+  border-color: #1565C0;
+}

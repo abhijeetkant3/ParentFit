@@ -1,0 +1,55 @@
+{
+  "waterGoalCups": 8,
+  "dailyTips": [
+    {
+      "category": "Hydration",
+      "title": "Drink a Glass of Water Upon Waking",
+      "detail": "Starts your metabolism, lubricates joints, and boosts morning energy level naturally.",
+      "icon": "🥛"
+    },
+    {
+      "category": "Protein for Muscle Preservation",
+      "title": "Include Protein in Every Meal",
+      "detail": "Aim for a palm-sized portion of protein (eggs, Greek yogurt, chicken, fish, lentils, or tofu) to protect joint & muscle strength.",
+      "icon": "🍳"
+    },
+    {
+      "category": "Bone & Joint Health",
+      "title": "Calcium & Vitamin D Boost",
+      "detail": "Support bone density with leafy greens, almonds, fortified milk, sesame seeds, and 10 minutes of gentle sunlight.",
+      "icon": "🦴"
+    },
+    {
+      "category": "Sustained Energy",
+      "title": "Fiber-Rich Whole Foods",
+      "detail": "Oats, berries, quinoa, and vegetables keep blood sugar steady and support digestion naturally.",
+      "icon": "🌾"
+    }
+  ],
+  "mealIdeas": [
+    {
+      "meal": "Breakfast",
+      "title": "Warm Protein Oatmeal",
+      "description": "Rolled oats topped with chia seeds, sliced banana, a handful of walnuts, and a splash of milk or Greek yogurt.",
+      "calories": "~320 kcal"
+    },
+    {
+      "meal": "Lunch",
+      "title": "Rainbow Protein Salad or Bowl",
+      "description": "Mixed greens, grilled chicken or chickpea salad, cucumber, tomatoes, olive oil dressing, and whole wheat toast.",
+      "calories": "~410 kcal"
+    },
+    {
+      "meal": "Snack",
+      "title": "Handful of Almonds & Apple",
+      "description": "Crisp apple slices with 10-12 raw almonds or peanut butter for lasting afternoon energy.",
+      "calories": "~180 kcal"
+    },
+    {
+      "meal": "Dinner",
+      "title": "Baked Salmon / Tofu & Steamed Veggies",
+      "description": "Herb-baked salmon or marinated tofu served with steamed broccoli, carrots, and sweet potato mash.",
+      "calories": "~450 kcal"
+    }
+  ]
+}
