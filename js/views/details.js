@@ -34,13 +34,22 @@ export const detailsView = {
         <div class="flex flex-col gap-2">
           ${this.exercises.map(ex => `
             <div class="card card-interactive mb-1" onclick="location.hash='details?id=${ex.id}'">
-              <div class="flex items-center gap-2">
+              <div class="flex items-start gap-2">
                 <div style="width: 76px; height: 76px; border-radius: 12px; overflow: hidden; background: #E8F5E9; flex-shrink: 0;">
                   ${ex.svgIllustration}
                 </div>
-                <div style="flex: 1;">
-                  <div class="flex items-center justify-between">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.15rem;">${ex.name}</h3>
+                <div style="flex: 1; min-width: 0;">
+                  <div class="flex justify-between items-start" style="gap:8px;">
+<h3
+style="
+font-size:1.15rem;
+margin-bottom:0.15rem;
+flex:1;
+min-width:0;
+word-break:break-word;
+">
+    ${ex.name}
+</h3>
                     <span class="badge badge-primary">${ex.difficulty}</span>
                   </div>
                   <p class="text-muted" style="font-size: 0.95rem; margin-bottom: 0.25rem;">🏋️ ${ex.equipment}</p>
@@ -68,7 +77,7 @@ export const detailsView = {
             ${ex.svgIllustration}
           </div>
 
-          <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center justify-between"  style="align-items:flex-start; gap:8px;">
             <h1 style="font-size: 1.8rem; margin-bottom: 0;">${ex.name}</h1>
             <span class="badge badge-primary">${ex.difficulty}</span>
           </div>
