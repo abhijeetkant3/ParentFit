@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50"></stop>
+      <stop offset="100%" stop-color="#81C784"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="url(#grad)"></circle>
+
+  <!-- Heart -->
+  <path d="M32 48
+       L16 31
+       C10 25 11 15 20 15
+       C25 15 29 18 32 22
+       C35 18 39 15 44 15
+       C53 15 54 25 48 31
+       Z" fill="#ffffff"></path>
+
+  <!-- Leaf -->
+  <path d="M32 22
+       C39 24 42 31 38 38
+       C33 36 29 31 32 22Z" fill="#4CAF50"></path>
+</svg>
