@@ -1,4 +1,4 @@
-/* FitMom Single Page Application Hash Router */
+/* Parentfit Single Page Application Hash Router */
 
 class Router {
   constructor() {

@@ -1,4 +1,4 @@
-/* FitMom Home View Page */
+/* Parentfit Home View Page */
 import { store } from '../store.js';
 import { modalManager } from '../components/modal.js';
 

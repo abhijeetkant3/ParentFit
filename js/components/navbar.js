@@ -1,4 +1,4 @@
-/* FitMom Bottom Navigation Bar Component */
+/* Parentfit Bottom Navigation Bar Component */
 
 export function renderNavbar() {
   return `

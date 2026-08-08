@@ -1,4 +1,4 @@
-/* FitMom High-Contrast Dark Mode Styles */
+/* Parentfit High-Contrast Dark Mode Styles */
 
 body.dark-mode {
   --background: #12181B;
@@ -26,8 +26,16 @@ body.dark-mode .app-header {
 }
 
 body.dark-mode .bottom-navbar {
-  background-color: #1E272C;
-  border-top-color: var(--border-color);
+  background: rgba(30, 39, 44, 0.78) !important;
+
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+  border: 1px solid rgba(129, 199, 132, 0.18) !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 body.dark-mode .nav-item {
@@ -60,4 +68,19 @@ body.dark-mode .water-cup-btn {
 body.dark-mode .water-cup-btn.filled {
   background-color: #1976D2;
   border-color: #1565C0;
+}
+
+/* Player Breathing Tip - Dark Mode Only */
+
+body.dark-mode .player-breathing-tip {
+  background: #1E3024 !important;
+  border: 1px solid #0ccf2d !important;
+}
+
+body.dark-mode .player-breathing-tip__title {
+  color: #81C784 !important;
+}
+
+body.dark-mode .player-breathing-tip__text {
+  color: #F3F4F6 !important;
 }

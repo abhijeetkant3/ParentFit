@@ -18,14 +18,14 @@ foreach ($s in $sizes) {
     $bgBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(76, 175, 80))
     $g.FillPath($bgBrush, $p)
     
-    # White Text "FitMom"
+    # White Text "Parentfit"
     $font = New-Object System.Drawing.Font('Arial', [float]($s * 0.22), [System.Drawing.FontStyle]::Bold)
     $whiteBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::White)
     $sf = New-Object System.Drawing.StringFormat
     $sf.Alignment = [System.Drawing.StringAlignment]::Center
     $sf.LineAlignment = [System.Drawing.StringAlignment]::Center
     $rect = New-Object System.Drawing.RectangleF(0, 0, $s, $s)
-    $g.DrawString("FitMom", $font, $whiteBrush, $rect, $sf)
+    $g.DrawString("Parentfit", $font, $whiteBrush, $rect, $sf)
     
     $bmp.Save("assets/icons/icon-$s.png", [System.Drawing.Imaging.ImageFormat]::Png)
     $bmp.Dispose()

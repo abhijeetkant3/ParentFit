@@ -1,4 +1,4 @@
-/* FitMom Reusable Modal Component */
+/* Parentfit Reusable Modal Component */
 
 class ModalManager {
   constructor() {

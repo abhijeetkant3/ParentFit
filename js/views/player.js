@@ -1,4 +1,4 @@
-/* FitMom Workout Player View Page */
+/* Parentfit Workout Player View Page */
 import { store } from '../store.js';
 import { audioManager } from '../audio.js';
 

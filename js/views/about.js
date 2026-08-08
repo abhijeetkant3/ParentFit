@@ -1,4 +1,4 @@
-/* FitMom About & Safety View Page */
+/* Parentfit About & Safety View Page */
 
 export const aboutView = {
   async render() {
@@ -7,7 +7,7 @@ export const aboutView = {
         <!-- Hero Card -->
         <div class="card card-hero text-center mb-3">
           <div style="font-size: 3rem; margin-bottom: 0.5rem;">❤️</div>
-          <h1 style="font-size: 2rem;">FitMom</h1>
+          <h1 style="font-size: 2rem;">Parentfit</h1>
           <p style="opacity: 0.95; font-size: 1.15rem;">Your Gentle Personal Fitness Coach</p>
           <span class="badge badge-accent mt-1">Version 1.0 (PWA Offline Ready)</span>
         </div>
@@ -16,7 +16,7 @@ export const aboutView = {
         <div class="card mb-3">
           <h2 style="font-size: 1.35rem;" class="mb-2">Designed With Love for Mom</h2>
           <p style="font-size: 1.05rem; line-height: 1.6;">
-            FitMom was created specifically for women and older adults who want to stay active, build strength, protect joint health, and feel energized every single day—without intense gym strain.
+            Parentfit was created specifically for women and older adults who want to stay active, build strength, protect joint health, and feel energized every single day—without intense gym strain.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export const aboutView = {
 
         <!-- Footer Info -->
         <div class="text-center text-muted mb-3" style="font-size: 0.95rem;">
-          <p>FitMom Progressive Web App • Works 100% Offline</p>
+          <p>Parentfit Progressive Web App • Works 100% Offline</p>
         </div>
       </div>
     `;

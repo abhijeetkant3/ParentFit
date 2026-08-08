@@ -1,4 +1,4 @@
-/* FitMom Settings View Page */
+/* Parentfit Settings View Page */
 import { store } from '../store.js';
 import { modalManager } from '../components/modal.js';
 
@@ -10,7 +10,7 @@ export const settingsView = {
       <div class="view-settings animate-fade-in">
         <div class="mb-3">
           <h1>App Settings</h1>
-          <p class="text-muted">Personalize your FitMom experience for comfort and legibility.</p>
+          <p class="text-muted">Personalize your Parentfit experience for comfort and legibility.</p>
         </div>
 
         <!-- Appearance & Accessibility Card -->
@@ -72,10 +72,10 @@ export const settingsView = {
 
           <div class="mb-3">
             <button id="pwa-install-btn" class="btn btn-secondary" style="display: none; width: 100%;">
-              📲 Install FitMom on Home Screen
+              📲 Install Parentfit on Home Screen
             </button>
             <p id="pwa-installed-msg" class="text-muted text-center" style="font-size: 0.95rem;">
-              ✓ FitMom is ready for offline use!
+              ✓ Parentfit is ready for offline use!
             </p>
           </div>
 
@@ -152,7 +152,7 @@ export const settingsView = {
           window.deferredPWAInstallPrompt.prompt();
           const choice = await window.deferredPWAInstallPrompt.userChoice;
           if (choice.outcome === 'accepted') {
-            console.log('User installed FitMom PWA');
+            console.log('User installed Parentfit PWA');
           }
           window.deferredPWAInstallPrompt = null;
           pwaBtn.style.display = 'none';

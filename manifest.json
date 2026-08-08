@@ -1,6 +1,6 @@
 {
-  "name": "FitMom - Senior Fitness Coach",
-  "short_name": "FitMom",
+  "name": "Parentfit - Senior Fitness Coach",
+  "short_name": "Parentfit",
   "description": "Personal fitness coach designed for gentle, beginner-friendly workouts for mothers and older adults.",
   "start_url": "./index.html",
   "display": "standalone",

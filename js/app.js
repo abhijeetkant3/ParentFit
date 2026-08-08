@@ -1,4 +1,4 @@
-/* FitMom Core ES6 Application Entrypoint */
+/* Parentfit Core ES6 Application Entrypoint */
 import { store } from './store.js';
 import { router } from './router.js';
 import { renderHeader, initHeaderEvents } from './components/header.js';
@@ -13,7 +13,7 @@ import { nutritionView } from './views/nutrition.js';
 import { settingsView } from './views/settings.js';
 import { aboutView } from './views/about.js';
 
-class FitMomApp {
+class ParentfitApp {
   init() {
     this.applySettingsTheme();
 
@@ -89,6 +89,6 @@ class FitMomApp {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new FitMomApp();
+  const app = new ParentfitApp();
   app.init();
 });

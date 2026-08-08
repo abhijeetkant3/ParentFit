@@ -1,148 +1,315 @@
-/* FitMom Global CSS Design System */
+/* Parentfit Global CSS Design System */
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
+
+/* =========================================
+   ROOT VARIABLES
+   ========================================= */
+
 :root {
-  /* Brand Color Palette */
-  --primary: #4CAF50;
-  --primary-hover: #43A047;
-  --primary-light: #E8F5E9;
-  --primary-dark: #2E7D32;
-  
-  --secondary: #81C784;
-  --secondary-light: #F1F8E9;
-  
-  --accent: #FFB74D;
-  --accent-hover: #FFA726;
-  --accent-light: #FFF3E0;
-  
-  --background: #F9FAFB;
-  --card-bg: #FFFFFF;
-  --text-main: #333333;
-  --text-muted: #666666;
-  --text-light: #888888;
-  
-  --border-color: #E5E7EB;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 12px 32px rgba(76, 175, 80, 0.12);
-  
-  --radius-card: 20px;
-  --radius-btn: 16px;
-  --radius-full: 9999px;
-  
-  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  
-  /* Font Sizes for Elderly Readability */
-  --font-size-xs: 0.95rem;   /* ~15px */
-  --font-size-sm: 1.1rem;    /* ~17.5px */
-  --font-size-base: 1.25rem; /* 20px Base */
-  --font-size-lg: 1.5rem;    /* 24px */
-  --font-size-xl: 1.85rem;   /* ~30px */
-  --font-size-xxl: 2.3rem;   /* ~37px */
-  
-  /* Layout Dimensions */
-  --header-height: 72px;
-  --navbar-height: 76px;
-  --max-content-width: 600px;
+
+    /* Brand Color Palette */
+
+    --primary: #4CAF50;
+    --primary-hover: #43A047;
+    --primary-light: #E8F5E9;
+    --primary-dark: #2E7D32;
+
+    --secondary: #81C784;
+    --secondary-light: #F1F8E9;
+
+    --accent: #FFB74D;
+    --accent-hover: #FFA726;
+    --accent-light: #FFF3E0;
+
+    --background: #F9FAFB;
+    --card-bg: #FFFFFF;
+
+    --text-main: #333333;
+    --text-muted: #666666;
+    --text-light: #888888;
+
+    --border-color: #E5E7EB;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 32px rgba(76, 175, 80, 0.12);
+
+    --radius-card: 20px;
+    --radius-btn: 16px;
+    --radius-full: 9999px;
+
+    --font-family:
+        'Outfit',
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+
+    /* Font Sizes for Elderly Readability */
+
+    --font-size-xs: 0.95rem;
+    --font-size-sm: 1.1rem;
+    --font-size-base: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 1.85rem;
+    --font-size-xxl: 2.3rem;
+
+
+    /* Layout Dimensions */
+
+    --header-height: 72px;
+    --navbar-height: 76px;
+    --max-content-width: 600px;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+
+/* =========================================
+   GLOBAL RESET
+   ========================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  background-color: var(--background);
-  color: var(--text-main);
-  font-family: var(--font-family);
-  font-size: 18px; /* High legibility baseline */
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+
+/* =========================================
+   HTML & BODY
+   ========================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--background);
+    color: var(--text-main);
+
+    font-family: var(--font-family);
+    font-size: 18px;
+    line-height: 1.5;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
 }
+
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* App Container (Mobile First Container) */
+
+/* =========================================
+   APP CONTAINER
+   ========================================= */
+
 #app {
-  width: 100%;
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  position: relative;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+    width: 100%;
+    max-width: var(--max-content-width);
+
+    margin: 0 auto;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background);
+
+    position: relative;
+
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
 }
 
-/* Main Content Area */
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
 #main-content {
-  flex: 1;
-  padding: 1.25rem 1.25rem calc(var(--navbar-height) + 1.5rem) 1.25rem;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+    min-width: 0;
+    width: 100%;
+
+    flex: 1;
+
+    padding:
+        1.25rem
+        1.25rem
+        calc(var(--navbar-height) + 1.5rem)
+        1.25rem;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
 }
 
-/* Headings */
-h1, h2, h3, h4 {
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.25;
-  margin-bottom: 0.5rem;
+
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
 }
 
-h1 { font-size: var(--font-size-xxl); }
-h2 { font-size: var(--font-size-xl); }
-h3 { font-size: var(--font-size-lg); }
-h4 { font-size: var(--font-size-base); }
+h1 {
+    font-size: var(--font-size-xxl);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+}
+
+h3 {
+    font-size: var(--font-size-lg);
+}
+
+h4 {
+    font-size: var(--font-size-base);
+}
+
 
 p {
-  margin-bottom: 0.75rem;
-  font-size: var(--font-size-base);
-  color: var(--text-main);
+    margin-bottom: 0.75rem;
+    font-size: var(--font-size-base);
+    color: var(--text-main);
 }
+
 
 a {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-/* Utility Classes */
-.text-center { text-align: center; }
-.text-muted { color: var(--text-muted); }
-.font-bold { font-weight: 700; }
-.font-semibold { font-weight: 600; }
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
 
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.justify-center { justify-content: center; }
-.gap-1 { gap: 0.5rem; }
-.gap-2 { gap: 1rem; }
-.gap-3 { gap: 1.5rem; }
+/* =========================================
+   UTILITY CLASSES
+   ========================================= */
 
-/* Focus styles for keyboard accessibility */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+
+/* Margins */
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+
+/* Flex */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+
+/* Gaps */
+
+.gap-1 {
+    gap: 0.5rem;
+}
+
+.gap-2 {
+    gap: 1rem;
+}
+
+.gap-3 {
+    gap: 1.5rem;
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
 :focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 3px;
-  border-radius: 8px;
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 8px;
 }

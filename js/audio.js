@@ -1,4 +1,4 @@
-/* FitMom Offline Web Audio API Synthesizer */
+/* Parentfit Offline Web Audio API Synthesizer */
 import { store } from './store.js';
 
 class AudioManager {

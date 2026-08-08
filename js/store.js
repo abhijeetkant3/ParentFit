@@ -1,12 +1,12 @@
-/* FitMom LocalStorage & State Management Store */
+/* Parentfit LocalStorage & State Management Store */
 
 const STORAGE_KEYS = {
-  COMPLETED_WORKOUTS: 'fitmom_completed_workouts',
-  COMPLETED_EXERCISES: 'fitmom_completed_exercises',
-  STREAK: 'fitmom_streak',
-  WEIGHT_HISTORY: 'fitmom_weight_history',
-  WATER_INTAKE: 'fitmom_water_intake',
-  SETTINGS: 'fitmom_settings'
+  COMPLETED_WORKOUTS: 'Parentfit_completed_workouts',
+  COMPLETED_EXERCISES: 'Parentfit_completed_exercises',
+  STREAK: 'Parentfit_streak',
+  WEIGHT_HISTORY: 'Parentfit_weight_history',
+  WATER_INTAKE: 'Parentfit_water_intake',
+  SETTINGS: 'Parentfit_settings'
 };
 
 const DEFAULT_SETTINGS = {

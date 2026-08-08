@@ -1,4 +1,4 @@
-/* FitMom Nutrition & Water Tracker View Page */
+/* Parentfit Nutrition & Water Tracker View Page */
 import { store } from '../store.js';
 
 export const nutritionView = {

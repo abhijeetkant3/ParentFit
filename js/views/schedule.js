@@ -1,4 +1,4 @@
-/* FitMom Weekly Schedule View Page */
+/* Parentfit Weekly Schedule View Page */
 import { store } from '../store.js';
 
 export const scheduleView = {
