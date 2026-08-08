@@ -137,16 +137,7 @@ body.dark-mode .water-cup-btn.filled {
 ================================ */
 
 body.dark-mode .player-breathing-tip {
-  background: #252D22 !important;
+  background: #10100f !important;
   border: 1px solid #49654A !important;
 }
 
-
-body.dark-mode .player-breathing-tip__title {
-  color: #91C995 !important;
-}
-
-
-body.dark-mode .player-breathing-tip__text {
-  color: #E9E9DF !important;
-}

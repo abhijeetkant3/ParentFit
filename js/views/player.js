@@ -136,7 +136,7 @@ export const playerView = {
           </div>
 
           <!-- Breathing Advice -->
-          <div class="card card-interactive" style="background: #F1F8E9; border: 1px solid #C8E6C9; padding: 0.85rem 1rem;">
+         <div class="card card-interactive player-breathing-tip" style="background: #F1F8E9; border: 1px solid #C8E6C9; padding: 0.85rem 1rem;">
             <span style="font-weight: 700; color: var(--primary-dark);">🌬️ Breathing Tip:</span>
             <span style="font-size: 1rem;"> ${currentEx.breathing}</span>
           </div>
