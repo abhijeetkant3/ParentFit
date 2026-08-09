@@ -1,6 +1,9 @@
 /* Parentfit Workout Player View Page */
 import { store } from '../store.js';
 import { audioManager } from '../audio.js';
+import { createWorkoutForDay, createWorkout } from '../domain/workoutEngine.js';
+import { recordPerformance } from '../services/progressionService.js';
+import { modalManager } from '../components/modal.js';
 
 export const playerView = {
   exercises: [],
@@ -16,40 +19,42 @@ export const playerView = {
   isResting: false,
 
   async render(params) {
-    let exercisesData = [];
-    let scheduleData = [];
-    try {
-      const [exRes, schRes] = await Promise.all([
-        fetch('./data/exercises.json'),
-        fetch('./data/schedule.json')
-      ]);
-      exercisesData = await exRes.json();
-      const schJson = await schRes.json();
-      scheduleData = schJson.weeklyPlan || [];
-    } catch (e) {
-      console.error('Failed to load JSON for player', e);
-    }
-
-    // Determine target routine
     let targetDay = params?.day || 'Monday';
     let singleExerciseId = params?.exercise;
 
     if (singleExerciseId) {
-      const match = exercisesData.find(e => e.id === singleExerciseId);
-      if (match) {
-        this.exercises = [match];
-        this.routineTitle = match.name;
+      try {
+        const workout = await createWorkout({
+          title: '',
+          exercises: [singleExerciseId]
+        });
+        if (workout && workout.exercises.length > 0) {
+          this.exercises = workout.exercises;
+          this.routineTitle = this.exercises[0]?.name || 'Workout Session';
+        } else {
+          this.exercises = [];
+        }
+      } catch (e) {
+        console.warn('Failed to load single exercise via workoutEngine', e);
+        this.exercises = [];
       }
     } else {
-      const plan = scheduleData.find(p => p.day === targetDay) || scheduleData[0];
-      this.routineTitle = `${plan.day} - ${plan.title}`;
-      this.exercises = plan.exercises
-        .map(id => exercisesData.find(e => e.id === id))
-        .filter(Boolean);
+      try {
+        const workout = await createWorkoutForDay(targetDay);
+        if (workout && workout.exercises.length > 0) {
+          this.routineTitle = `${workout.day} - ${workout.title}`;
+          this.exercises = workout.exercises;
+        } else {
+          this.exercises = [];
+        }
+      } catch (e) {
+        console.warn('Failed to load daily workout via workoutEngine', e);
+        this.exercises = [];
+      }
     }
 
     if (!this.exercises.length) {
-      this.exercises = exercisesData.slice(0, 4);
+      this.exercises = [];
     }
 
     this.currentIndex = 0;
@@ -64,6 +69,31 @@ export const playerView = {
     const currentEx = this.exercises[this.currentIndex];
     const totalEx = this.exercises.length;
     const progressPercent = Math.round(((this.currentIndex + 1) / totalEx) * 100);
+
+    const isTimeBased = currentEx?.type === 'time';
+    const targetLabel = isTimeBased ? 'DURATION' : 'REPETITIONS';
+
+    let targetValue = '—';
+    if (isTimeBased && currentEx?.duration) {
+      if (typeof currentEx.duration === 'string') {
+        targetValue = currentEx.duration;
+      } else if (typeof currentEx.duration === 'object') {
+        const { minSeconds, maxSeconds } = currentEx.duration;
+        if (minSeconds !== undefined && maxSeconds !== undefined) {
+          targetValue = minSeconds === maxSeconds ? `${minSeconds} seconds` : `${minSeconds}-${maxSeconds} seconds`;
+        }
+      }
+    } else if (!isTimeBased && currentEx?.reps) {
+      if (typeof currentEx.reps === 'string') {
+        targetValue = currentEx.reps;
+      } else if (typeof currentEx.reps === 'object') {
+        const { min, max, unit } = currentEx.reps;
+        if (min !== undefined && max !== undefined) {
+          const u = unit || 'reps';
+          targetValue = min === max ? `${min} ${u}` : `${min}-${max} ${u}`;
+        }
+      }
+    }
 
     return `
       <div class="view-player animate-fade-in">
@@ -121,8 +151,8 @@ export const playerView = {
               </div>
               <div style="width: 1px; height: 35px; background: #FFE0B2;"></div>
               <div>
-                <span class="text-muted" style="font-size: 0.9rem;">REPETITIONS</span>
-                <div class="font-bold" style="font-size: 1.4rem; color: var(--primary-dark);">${currentEx.reps}</div>
+                <span class="text-muted" style="font-size: 0.9rem;">${targetLabel}</span>
+                <div class="font-bold" style="font-size: 1.4rem; color: var(--primary-dark);">${targetValue}</div>
               </div>
             </div>
           </div>
@@ -198,15 +228,73 @@ export const playerView = {
       // Completed current set, trigger rest timer
       this.currentSet++;
       this.startRest(currentEx.rest || 30);
-    } else if (this.currentIndex < this.exercises.length - 1) {
-      // Completed all sets for this exercise, move to next exercise
-      this.currentIndex++;
-      this.currentSet = 1;
-      this.startRest(45); // Rest between different exercises
     } else {
-      // Completed entire workout!
-      this.finishWorkout();
+      // Completed final set -> prompt for performance feedback
+      this.showFeedbackModal(currentEx, () => {
+        if (this.currentIndex < this.exercises.length - 1) {
+          // Completed all sets for this exercise, move to next exercise
+          this.currentIndex++;
+          this.currentSet = 1;
+          this.startRest(45); // Rest between different exercises
+        } else {
+          // Completed entire workout!
+          this.finishWorkout();
+        }
+      });
     }
+  },
+
+  showFeedbackModal(currentEx, onComplete) {
+    let rated = false;
+
+    modalManager.show({
+      title: 'How did this exercise feel?',
+      bodyHTML: `
+        <p style="font-size: 1rem; color: var(--text-muted);" class="mb-3">
+          Select feedback for <strong>${currentEx?.name || 'this exercise'}</strong>:
+        </p>
+        <div class="flex flex-col gap-2 mb-2">
+          <button id="rating-easy-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
+            🙂 Easy
+          </button>
+          <button id="rating-good-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
+            👍 Good
+          </button>
+          <button id="rating-difficult-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
+            😓 Difficult
+          </button>
+          <button id="rating-too-difficult-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
+            🛑 Too Difficult
+          </button>
+        </div>
+      `,
+      primaryText: null,
+      secondaryText: null
+    });
+
+    const handleRating = (rating) => {
+      if (rated) return;
+      rated = true;
+
+      try {
+        recordPerformance(currentEx, rating);
+      } catch (error) {
+        console.error('[Player] Failed to record performance:', error);
+      }
+
+      modalManager.close();
+      onComplete();
+    };
+
+    const btnEasy = document.getElementById('rating-easy-btn');
+    const btnGood = document.getElementById('rating-good-btn');
+    const btnDiff = document.getElementById('rating-difficult-btn');
+    const btnTooDiff = document.getElementById('rating-too-difficult-btn');
+
+    if (btnEasy) btnEasy.onclick = () => handleRating('easy');
+    if (btnGood) btnGood.onclick = () => handleRating('good');
+    if (btnDiff) btnDiff.onclick = () => handleRating('difficult');
+    if (btnTooDiff) btnTooDiff.onclick = () => handleRating('too_difficult');
   },
 
   handlePrev() {

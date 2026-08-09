@@ -31,7 +31,7 @@ class ModalManager {
         </div>
         <div class="flex gap-2">
           ${secondaryText ? `<button id="modal-secondary-btn" class="btn btn-outline" style="flex: 1;">${secondaryText}</button>` : ''}
-          <button id="modal-primary-btn" class="btn btn-primary" style="flex: 1;">${primaryText}</button>
+          ${primaryText ? `<button id="modal-primary-btn" class="btn btn-primary" style="flex: 1;">${primaryText}</button>` : ''}
         </div>
       </div>
     `;
