@@ -4,6 +4,7 @@ import { audioManager } from '../audio.js';
 import { createWorkoutForDay, createWorkout } from '../domain/workoutEngine.js';
 import { recordPerformance } from '../services/progressionService.js';
 import { modalManager } from '../components/modal.js';
+import { t, translateExercise } from '../services/languageService.js';
 
 export const playerView = {
   exercises: [],
@@ -29,7 +30,7 @@ export const playerView = {
           exercises: [singleExerciseId]
         });
         if (workout && workout.exercises.length > 0) {
-          this.exercises = workout.exercises;
+          this.exercises = workout.exercises.map(ex => translateExercise(ex));
           this.routineTitle = this.exercises[0]?.name || 'Workout Session';
         } else {
           this.exercises = [];
@@ -43,7 +44,7 @@ export const playerView = {
         const workout = await createWorkoutForDay(targetDay);
         if (workout && workout.exercises.length > 0) {
           this.routineTitle = `${workout.day} - ${workout.title}`;
-          this.exercises = workout.exercises;
+          this.exercises = workout.exercises.map(ex => translateExercise(ex));
         } else {
           this.exercises = [];
         }
@@ -71,7 +72,7 @@ export const playerView = {
     const progressPercent = Math.round(((this.currentIndex + 1) / totalEx) * 100);
 
     const isTimeBased = currentEx?.type === 'time';
-    const targetLabel = isTimeBased ? 'DURATION' : 'REPETITIONS';
+    const targetLabel = isTimeBased ? t('player.duration') : t('player.repetitions');
 
     let targetValue = '—';
     if (isTimeBased && currentEx?.duration) {
@@ -80,7 +81,7 @@ export const playerView = {
       } else if (typeof currentEx.duration === 'object') {
         const { minSeconds, maxSeconds } = currentEx.duration;
         if (minSeconds !== undefined && maxSeconds !== undefined) {
-          targetValue = minSeconds === maxSeconds ? `${minSeconds} seconds` : `${minSeconds}-${maxSeconds} seconds`;
+          targetValue = minSeconds === maxSeconds ? `${minSeconds} s` : `${minSeconds}-${maxSeconds} s`;
         }
       }
     } else if (!isTimeBased && currentEx?.reps) {
@@ -89,7 +90,7 @@ export const playerView = {
       } else if (typeof currentEx.reps === 'object') {
         const { min, max, unit } = currentEx.reps;
         if (min !== undefined && max !== undefined) {
-          const u = unit || 'reps';
+          const u = unit || '';
           targetValue = min === max ? `${min} ${u}` : `${min}-${max} ${u}`;
         }
       }
@@ -100,9 +101,9 @@ export const playerView = {
         <!-- Top Routine Bar -->
         <div class="flex items-center justify-between mb-2">
           <button onclick="location.hash='home'" class="btn btn-outline" style="width: auto; min-height: 44px; padding: 0.4rem 1rem; font-size: 0.95rem;">
-            ✕ Exit
+            ${t('player.exit')}
           </button>
-          <span class="font-bold text-muted" style="font-size: 1.05rem;">Exercise ${this.currentIndex + 1} of ${totalEx}</span>
+          <span class="font-bold text-muted" style="font-size: 1.05rem;">${t('player.exerciseOf', { current: this.currentIndex + 1, total: totalEx })}</span>
           <span class="badge badge-primary">${currentEx.difficulty}</span>
         </div>
 
@@ -113,17 +114,17 @@ export const playerView = {
 
         <!-- Rest Overlay Screen (When active) -->
         <div id="rest-screen" class="card card-accent text-center mb-3" style="display: ${this.isResting ? 'block' : 'none'}; padding: 2rem 1.25rem;">
-          <span class="badge badge-accent mb-2" style="font-size: 1.1rem;">REST TIME</span>
+          <span class="badge badge-accent mb-2" style="font-size: 1.1rem;">${t('player.restTime')}</span>
           <div id="timer-display" class="font-bold mb-2 animate-pulse" style="font-size: 4rem; color: #D84315; line-height: 1;">
             ${this.timerSeconds}s
           </div>
-          <p class="mb-3" style="font-size: 1.15rem;">Take deep breaths and sip water 💧</p>
+          <p class="mb-3" style="font-size: 1.15rem;">${t('player.restAdvice')}</p>
           <div class="flex gap-2 justify-center">
             <button id="add-10s-btn" class="btn btn-secondary" style="width: auto; min-height: 48px; padding: 0.5rem 1.25rem; font-size: 1rem;">
-              +10 Sec
+              ${t('player.add10Sec')}
             </button>
             <button id="skip-rest-btn" class="btn btn-primary" style="width: auto; min-height: 48px; padding: 0.5rem 1.5rem; font-size: 1rem;">
-              Skip Rest ⏭️
+              ${t('player.skipRest')}
             </button>
           </div>
         </div>
@@ -146,8 +147,8 @@ export const playerView = {
           <div class="card card-accent text-center mb-3" style="padding: 1rem;">
             <div class="flex justify-around items-center">
               <div>
-                <span class="text-muted" style="font-size: 0.9rem;">TARGET SET</span>
-                <div class="font-bold" style="font-size: 1.4rem; color: var(--primary-dark);">Set ${this.currentSet} of ${currentEx.sets}</div>
+                <span class="text-muted" style="font-size: 0.9rem;">${t('player.targetSet')}</span>
+                <div class="font-bold" style="font-size: 1.4rem; color: var(--primary-dark);">${t('player.setOf', { current: this.currentSet, total: currentEx.sets })}</div>
               </div>
               <div style="width: 1px; height: 35px; background: #FFE0B2;"></div>
               <div>
@@ -159,7 +160,7 @@ export const playerView = {
 
           <!-- Instructions & Form Tips -->
           <div class="mb-3">
-            <h4 style="font-size: 1.15rem;" class="mb-1">How to Perform:</h4>
+            <h4 style="font-size: 1.15rem;" class="mb-1">${t('player.howToPerform')}</h4>
             <ol style="padding-left: 1.25rem; line-height: 1.6; font-size: 1.05rem;">
               ${currentEx.instructions.map(inst => `<li class="mb-1">${inst}</li>`).join('')}
             </ol>
@@ -167,7 +168,7 @@ export const playerView = {
 
           <!-- Breathing Advice -->
          <div class="card card-interactive player-breathing-tip" style="background: #F1F8E9; border: 1px solid #C8E6C9; padding: 0.85rem 1rem;">
-            <span style="font-weight: 700; color: var(--primary-dark);">🌬️ Breathing Tip:</span>
+            <span style="font-weight: 700; color: var(--primary-dark);">${t('player.breathingTip')}</span>
             <span style="font-size: 1rem;"> ${currentEx.breathing}</span>
           </div>
         </div>
@@ -175,11 +176,11 @@ export const playerView = {
         <!-- Bottom Controls Bar -->
         <div class="flex gap-2 mb-2">
           <button id="player-prev-btn" class="btn btn-outline" style="flex: 1; ${this.currentIndex === 0 && this.currentSet === 1 ? 'opacity: 0.5; pointer-events: none;' : ''}">
-            ◀ Previous
+            ${t('player.prevBtn')}
           </button>
           
           <button id="player-next-btn" class="btn btn-primary ripple" style="flex: 1.5;">
-            ${this.currentSet < currentEx.sets ? `Set ${this.currentSet + 1} Complete ✓` : (this.currentIndex < totalEx - 1 ? 'Next Exercise ▶' : 'Finish Workout 🎉')}
+            ${this.currentSet < currentEx.sets ? t('player.setCompleteBtn', { nextSet: this.currentSet + 1 }) : (this.currentIndex < totalEx - 1 ? t('player.nextExerciseBtn') : t('player.finishWorkoutBtn'))}
           </button>
         </div>
       </div>
@@ -248,23 +249,23 @@ export const playerView = {
     let rated = false;
 
     modalManager.show({
-      title: 'How did this exercise feel?',
+      title: t('player.feedbackModalTitle'),
       bodyHTML: `
         <p style="font-size: 1rem; color: var(--text-muted);" class="mb-3">
-          Select feedback for <strong>${currentEx?.name || 'this exercise'}</strong>:
+          ${t('player.feedbackModalPrompt', { name: currentEx?.name || '' })}
         </p>
         <div class="flex flex-col gap-2 mb-2">
           <button id="rating-easy-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
-            🙂 Easy
+            ${t('player.easyRating')}
           </button>
           <button id="rating-good-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
-            👍 Good
+            ${t('player.goodRating')}
           </button>
           <button id="rating-difficult-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
-            😓 Difficult
+            ${t('player.difficultRating')}
           </button>
           <button id="rating-too-difficult-btn" class="btn btn-outline" style="justify-content: flex-start; font-size: 1.05rem; padding: 0.75rem 1rem;">
-            🛑 Too Difficult
+            ${t('player.tooDifficultRating')}
           </button>
         </div>
       `,
@@ -367,16 +368,16 @@ export const playerView = {
       mainContainer.innerHTML = `
         <div class="card card-hero text-center animate-scale-in" style="padding: 2.5rem 1.5rem; margin-top: 2rem;">
           <div style="font-size: 4rem; margin-bottom: 0.5rem;">🎉</div>
-          <h1 style="font-size: 2.2rem;">Workout Complete!</h1>
+          <h1 style="font-size: 2.2rem;">${t('player.workoutCompleteTitle')}</h1>
           <p style="font-size: 1.25rem; opacity: 0.95; margin-bottom: 1.5rem;">
-            Awesome job! You've taken a wonderful step for your strength, heart, and health today.
+            ${t('player.workoutCompleteSub')}
           </p>
           <div class="card mb-3 text-center" style="background: rgba(255, 255, 255, 0.2); border: none; color: #FFFFFF;">
-            <div class="font-bold" style="font-size: 1.8rem;">${store.state.streak} Days 🔥</div>
-            <span style="font-size: 0.95rem;">Current Active Streak</span>
+            <div class="font-bold" style="font-size: 1.8rem;">${t('home.daysUnit', { count: store.state.streak })} 🔥</div>
+            <span style="font-size: 0.95rem;">${t('player.currentActiveStreak')}</span>
           </div>
           <button onclick="location.hash='home'" class="btn btn-accent ripple" style="font-size: 1.2rem;">
-            Back to Home ❤️
+            ${t('player.backToHomeBtn')}
           </button>
         </div>
       `;
@@ -395,3 +396,4 @@ export const playerView = {
     this.stopTimer();
   }
 };
+

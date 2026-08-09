@@ -1,5 +1,6 @@
 /* Parentfit Weekly Schedule View Page */
 import { store } from '../store.js';
+import { t, translateWorkoutPlan } from '../services/languageService.js';
 
 export const scheduleView = {
   async render() {
@@ -13,7 +14,7 @@ export const scheduleView = {
     }
 
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const todayName = days[new Date().getDay()];
+    const todayRawName = days[new Date().getDay()];
 
     const completedWorkouts = store.state.completedWorkouts;
     const todayStr = new Date().toISOString().split('T')[0];
@@ -21,15 +22,16 @@ export const scheduleView = {
     return `
       <div class="view-schedule animate-fade-in">
         <div class="mb-3">
-          <h1>Weekly Schedule</h1>
-          <p class="text-muted">A gentle, balanced 7-day plan designed for consistent progress without strain.</p>
+          <h1>${t('schedule.title')}</h1>
+          <p class="text-muted">${t('schedule.subtitle')}</p>
         </div>
 
         <div class="schedule-list flex flex-col gap-2">
-          ${weeklyPlan.map((plan) => {
-            const isToday = plan.day === todayName;
-            const isRest = plan.intensity === 'Rest';
-            
+          ${weeklyPlan.map((rawPlan) => {
+            const plan = translateWorkoutPlan(rawPlan);
+            const isToday = rawPlan.day === todayRawName;
+            const isRest = rawPlan.intensity === 'Rest';
+
             // Check if completed today
             const isDoneToday = isToday && completedWorkouts.some(w => w.date === todayStr);
 
@@ -37,9 +39,9 @@ export const scheduleView = {
               <div class="card ${isToday ? 'card-hero' : ''} mb-1" style="padding: 1.25rem;">
                 <div class="flex items-center justify-between mb-1">
                   <div class="flex items-center gap-2">
-                    <h3 style="font-size: 1.3rem; margin-bottom: 0;">${plan.day}</h3>
-                    ${isToday ? `<span class="badge badge-accent">TODAY</span>` : ''}
-                    ${isDoneToday ? `<span class="badge badge-primary">✓ COMPLETED</span>` : ''}
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0;">${plan.displayDay}</h3>
+                    ${isToday ? `<span class="badge badge-accent">${t('schedule.todayTag')}</span>` : ''}
+                    ${isDoneToday ? `<span class="badge badge-primary">${t('schedule.completedTag')}</span>` : ''}
                   </div>
                   <span class="badge ${isToday ? 'badge-accent' : 'badge-primary'}">${plan.intensity}</span>
                 </div>
@@ -53,8 +55,8 @@ export const scheduleView = {
                 </div>
 
                 <div class="flex gap-2 mt-2">
-                  <button onclick="location.hash='player?day=${plan.day}'" class="btn ${isToday ? 'btn-accent' : 'btn-primary'}" style="min-height: 48px; font-size: 1rem;">
-                    ${isRest ? '🌱 Start Gentle Stretch' : '▶️ Start Workout'}
+                  <button onclick="location.hash='player?day=${rawPlan.day}'" class="btn ${isToday ? 'btn-accent' : 'btn-primary'}" style="min-height: 48px; font-size: 1rem;">
+                    ${isRest ? t('schedule.startStretch') : t('schedule.startWorkout')}
                   </button>
                 </div>
               </div>
@@ -65,3 +67,4 @@ export const scheduleView = {
     `;
   }
 };
+

@@ -1,34 +1,34 @@
 /* Parentfit Progress & Weight Tracking View Page */
 import { store } from '../store.js';
 import { modalManager } from '../components/modal.js';
+import { t } from '../services/languageService.js';
 
 export const progressView = {
   async render() {
     const streak = store.state.streak;
     const completedWorkouts = store.state.completedWorkouts;
-    const completedExercises = store.state.completedExercises;
     const weightHistory = store.state.weightHistory;
     const latestWeight = store.getLatestWeight();
 
     return `
       <div class="view-progress animate-fade-in">
         <div class="mb-3">
-          <h1>Your Health Progress</h1>
-          <p class="text-muted">Celebrate every step of your fitness journey and track your consistency.</p>
+          <h1>${t('progress.title')}</h1>
+          <p class="text-muted">${t('progress.subtitle')}</p>
         </div>
 
         <!-- Highlights Grid -->
         <div class="stats-grid mb-3">
           <div class="stat-card">
             <div style="font-size: 2rem;">🔥</div>
-            <div class="stat-value">${streak} Days</div>
-            <div class="stat-label">Active Streak</div>
+            <div class="stat-value">${t('home.daysUnit', { count: streak })}</div>
+            <div class="stat-label">${t('progress.activeStreak')}</div>
           </div>
 
           <div class="stat-card">
             <div style="font-size: 2rem;">💪</div>
             <div class="stat-value">${completedWorkouts.length}</div>
-            <div class="stat-label">Total Workouts</div>
+            <div class="stat-label">${t('progress.totalWorkouts')}</div>
           </div>
         </div>
 
@@ -36,20 +36,19 @@ export const progressView = {
         <div class="card mb-3">
           <div class="flex items-center justify-between mb-2">
             <div>
-              <h2 style="font-size: 1.35rem; margin-bottom: 0;">Weight Tracker</h2>
-              <p class="text-muted" style="font-size: 0.95rem; margin-bottom: 0;">Current: <strong>${latestWeight} kg</strong></p>
+              <h2 style="font-size: 1.35rem; margin-bottom: 0;">${t('progress.weightTracker')}</h2>
+              <p class="text-muted" style="font-size: 0.95rem; margin-bottom: 0;">${t('progress.currentWeight', { weight: latestWeight })}</p>
             </div>
             <button id="progress-log-weight-btn" class="btn btn-primary" style="width: auto; min-height: 44px; padding: 0.4rem 1.1rem; font-size: 0.95rem;">
-              + Log Weight
+              ${t('progress.logWeightBtn')}
             </button>
           </div>
 
           <!-- Weight Visualizer Bars -->
           <div class="mb-3" style="background: var(--background); padding: 1rem; border-radius: 12px;">
-            <span class="text-muted font-semibold" style="font-size: 0.85rem;">Recent Weight Log (kg)</span>
+            <span class="text-muted font-semibold" style="font-size: 0.85rem;">${t('progress.recentLogHeader')}</span>
             <div class="flex items-end gap-2 mt-2" style="height: 100px; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-color);">
               ${weightHistory.slice(0, 6).reverse().map(item => {
-                // Calculate relative bar height
                 const min = Math.min(...weightHistory.map(w => w.weight)) - 2;
                 const max = Math.max(...weightHistory.map(w => w.weight)) + 2;
                 const range = (max - min) || 1;
@@ -69,14 +68,14 @@ export const progressView = {
 
         <!-- Workout History List -->
         <div class="card mb-3">
-          <h2 style="font-size: 1.35rem;" class="mb-2">Completed Workouts History</h2>
+          <h2 style="font-size: 1.35rem;" class="mb-2">${t('progress.completedHistory')}</h2>
           
           ${completedWorkouts.length === 0 ? `
             <div class="text-center text-muted" style="padding: 1.5rem 0;">
-              <p>No workouts recorded yet.</p>
-              <p style="font-size: 0.95rem;">Start your first gentle session today to begin your streak!</p>
+              <p>${t('progress.noWorkoutsYet')}</p>
+              <p style="font-size: 0.95rem;">${t('progress.startFirstSession')}</p>
               <button onclick="location.hash='schedule'" class="btn btn-secondary mt-1" style="width: auto; margin: 0 auto;">
-                View Weekly Schedule
+                ${t('progress.viewScheduleBtn')}
               </button>
             </div>
           ` : `
@@ -85,9 +84,9 @@ export const progressView = {
                 <div class="flex items-center justify-between" style="padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
                   <div>
                     <h4 style="margin-bottom: 0; font-size: 1.05rem;">${w.title}</h4>
-                    <span class="text-muted" style="font-size: 0.85rem;">📅 ${w.date} • ⏱️ ${Math.round(w.durationSec / 60)} min</span>
+                    <span class="text-muted" style="font-size: 0.85rem;">📅 ${w.date} • ⏱️ ${t('progress.minUnit', { min: Math.round(w.durationSec / 60) })}</span>
                   </div>
-                  <span class="badge badge-primary">✓ Completed</span>
+                  <span class="badge badge-primary">${t('progress.completedTag')}</span>
                 </div>
               `).join('')}
             </div>
@@ -103,21 +102,20 @@ export const progressView = {
       logBtn.onclick = () => {
         const currentW = store.getLatestWeight();
         modalManager.show({
-          title: 'Log Today\'s Weight',
+          title: t('home.logWeightModalTitle'),
           bodyHTML: `
             <div class="input-group">
-              <label class="input-label" for="weight-input-progress">Weight (in kg):</label>
+              <label class="input-label" for="weight-input-progress">${t('home.weightInputLabel')}</label>
               <input id="weight-input-progress" type="number" step="0.1" class="input-field" value="${currentW}" autofocus />
             </div>
           `,
-          primaryText: 'Save Weight',
+          primaryText: t('home.saveWeightBtn'),
           onPrimary: () => {
             const val = parseFloat(document.getElementById('weight-input-progress')?.value);
             if (!isNaN(val) && val > 30 && val < 250) {
               store.addWeightLog(val);
-              window.location.reload();
             } else {
-              alert('Please enter a valid weight between 30 kg and 250 kg.');
+              alert(t('home.validWeightAlert'));
               return false;
             }
           }
@@ -126,3 +124,4 @@ export const progressView = {
     }
   }
 };
+

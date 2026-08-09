@@ -1,24 +1,26 @@
 /* Parentfit Nutrition & Water Tracker View Page */
 import { store } from '../store.js';
+import { t, translateNutritionData } from '../services/languageService.js';
 
 export const nutritionView = {
   async render() {
-    let nutritionData = { waterGoalCups: 8, dailyTips: [], mealIdeas: [] };
+    let rawData = { waterGoalCups: 8, dailyTips: [], mealIdeas: [] };
     try {
       const res = await fetch('./data/nutrition.json');
-      nutritionData = await res.json();
+      rawData = await res.json();
     } catch (e) {
       console.error('Failed to load nutrition.json', e);
     }
 
+    const nutritionData = translateNutritionData(rawData);
     const waterCount = store.state.waterIntake.count;
     const goal = nutritionData.waterGoalCups || 8;
 
     return `
       <div class="view-nutrition animate-fade-in">
         <div class="mb-3">
-          <h1>Nutrition & Hydration</h1>
-          <p class="text-muted">Nourish your body with simple, wholesome food and daily hydration guidance.</p>
+          <h1>${t('nutrition.title')}</h1>
+          <p class="text-muted">${t('nutrition.subtitle')}</p>
         </div>
 
         <!-- Interactive Water Tracker Card -->
@@ -27,8 +29,8 @@ export const nutritionView = {
             <div class="flex items-center gap-2">
               <span style="font-size: 1.8rem;">💧</span>
               <div>
-                <h2 style="font-size: 1.35rem; margin-bottom: 0; color: #1E88E5;">Daily Water Tracker</h2>
-                <span class="text-muted" style="font-size: 0.95rem;">Goal: ${goal} glasses (2 Liters)</span>
+                <h2 style="font-size: 1.35rem; margin-bottom: 0; color: #1E88E5;">${t('nutrition.waterTrackerTitle')}</h2>
+                <span class="text-muted" style="font-size: 0.95rem;">${t('nutrition.waterGoal', { goal })}</span>
               </div>
             </div>
             <span class="font-bold" style="font-size: 1.4rem; color: #1E88E5;">${waterCount} / ${goal}</span>
@@ -44,13 +46,13 @@ export const nutritionView = {
           </div>
 
           <div class="flex justify-between mt-3">
-            <button id="water-minus-btn" class="btn btn-outline" style="min-height: 44px; width: 48%; padding: 0;">- Remove Cup</button>
-            <button id="water-plus-btn" class="btn btn-primary" style="min-height: 44px; width: 48%; padding: 0;">+ Drink Cup 🥛</button>
+            <button id="water-minus-btn" class="btn btn-outline" style="min-height: 44px; width: 48%; padding: 0;">${t('nutrition.removeCup')}</button>
+            <button id="water-plus-btn" class="btn btn-primary" style="min-height: 44px; width: 48%; padding: 0;">${t('nutrition.drinkCup')}</button>
           </div>
         </div>
 
         <!-- Daily Health Tips -->
-        <h2 style="font-size: 1.35rem;" class="mb-2">Vital Health Guidance</h2>
+        <h2 style="font-size: 1.35rem;" class="mb-2">${t('nutrition.vitalGuidance')}</h2>
         <div class="flex flex-col gap-2 mb-3">
           ${nutritionData.dailyTips.map(tip => `
             <div class="card mb-1" style="padding: 1.15rem;">
@@ -69,7 +71,7 @@ export const nutritionView = {
         </div>
 
         <!-- Healthy Meal Ideas -->
-        <h2 style="font-size: 1.35rem;" class="mb-2">Wholesome Meal Ideas</h2>
+        <h2 style="font-size: 1.35rem;" class="mb-2">${t('nutrition.wholesomeMealIdeas')}</h2>
         <div class="flex flex-col gap-2">
           ${nutritionData.mealIdeas.map(meal => `
             <div class="card mb-1">
@@ -95,14 +97,12 @@ export const nutritionView = {
     if (plusBtn) {
       plusBtn.onclick = () => {
         store.setWaterCount(waterCount + 1);
-        window.location.reload();
       };
     }
 
     if (minusBtn) {
       minusBtn.onclick = () => {
         store.setWaterCount(waterCount - 1);
-        window.location.reload();
       };
     }
 
@@ -112,8 +112,8 @@ export const nutritionView = {
       btn.onclick = () => {
         const targetIndex = parseInt(btn.getAttribute('data-index'), 10);
         store.setWaterCount(targetIndex);
-        window.location.reload();
       };
     });
   }
 };
+

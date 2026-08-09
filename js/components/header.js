@@ -1,5 +1,6 @@
 /* Parentfit Top App Header Component */
 import { store } from '../store.js';
+import { t } from '../services/languageService.js';
 
 let isDrawerOpen = false;
 
@@ -10,11 +11,11 @@ export function renderHeader() {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
         </svg>
-        <span>Parentfit</span>
+        <span>${t('header.brand')}</span>
       </div>
 
       <div class="flex items-center gap-1">
-        <button id="header-hamburger-toggle" class="header-action-btn" aria-label="Open menu" aria-expanded="false" title="Menu">
+        <button id="header-hamburger-toggle" class="header-action-btn" aria-label="${t('header.openMenu')}" aria-expanded="false" title="${t('header.menu')}">
           <span id="header-hamburger-icon" style="font-size: 1.3rem; line-height: 1;" aria-hidden="true">☰</span>
         </button>
       </div>
@@ -24,10 +25,10 @@ export function renderHeader() {
     <div id="nav-drawer-backdrop" class="nav-drawer-backdrop"></div>
 
     <!-- Right-Side Navigation Drawer -->
-    <aside id="nav-drawer" class="nav-drawer" aria-label="Navigation Menu">
+    <aside id="nav-drawer" class="nav-drawer" aria-label="${t('header.menu')}">
       <div class="nav-drawer-header">
-        <h2 class="nav-drawer-title">Menu</h2>
-        <button id="drawer-close-btn" class="header-action-btn" aria-label="Close menu" title="Close menu">
+        <h2 class="nav-drawer-title">${t('header.menu')}</h2>
+        <button id="drawer-close-btn" class="header-action-btn" aria-label="${t('header.closeMenu')}" title="${t('header.closeMenu')}">
           <span style="font-size: 1.2rem; line-height: 1;" aria-hidden="true">✕</span>
         </button>
       </div>
@@ -36,7 +37,7 @@ export function renderHeader() {
           <li role="none">
             <button id="drawer-settings-btn" class="drawer-item-btn" role="menuitem">
               <span style="font-size: 1.3rem;" aria-hidden="true">⚙️</span>
-              <span>Settings</span>
+              <span>${t('header.settings')}</span>
             </button>
           </li>
         </ul>
@@ -59,7 +60,7 @@ export function openDrawer() {
 
     if (toggleBtn) {
       toggleBtn.setAttribute('aria-expanded', 'true');
-      toggleBtn.setAttribute('aria-label', 'Close menu');
+      toggleBtn.setAttribute('aria-label', t('header.closeMenu'));
     }
     if (toggleIcon) {
       toggleIcon.textContent = '✕';
@@ -81,7 +82,7 @@ export function closeDrawer() {
 
     if (toggleBtn) {
       toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.setAttribute('aria-label', 'Open menu');
+      toggleBtn.setAttribute('aria-label', t('header.openMenu'));
     }
     if (toggleIcon) {
       toggleIcon.textContent = '☰';

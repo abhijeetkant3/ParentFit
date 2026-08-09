@@ -28,6 +28,25 @@ class ParentfitApp {
     router.register('about', aboutView);
 
     // Render Static Structural Components
+    this.renderStructure();
+
+    // Subscribe to store updates for real-time theme & language adjustments
+    store.subscribe(() => {
+      this.applySettingsTheme();
+      this.renderStructure();
+    });
+
+    // Register Service Worker for PWA Offline mode
+    this.registerServiceWorker();
+
+    // Handle PWA install prompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      window.deferredPWAInstallPrompt = e;
+    });
+  }
+
+  renderStructure() {
     const appElem = document.getElementById('app');
     if (appElem) {
       appElem.innerHTML = `
@@ -39,21 +58,8 @@ class ParentfitApp {
 
     initHeaderEvents();
 
-    // Subscribe to store updates for real-time theme adjustment
-    store.subscribe(() => this.applySettingsTheme());
-
-    // Initialize Router to render view into #main-content
     const mainContent = document.getElementById('main-content');
     router.init(mainContent);
-
-    // Register Service Worker for PWA Offline mode
-    this.registerServiceWorker();
-
-    // Handle PWA install prompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      window.deferredPWAInstallPrompt = e;
-    });
   }
 
   applySettingsTheme() {

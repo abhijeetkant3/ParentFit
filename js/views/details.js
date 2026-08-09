@@ -1,6 +1,7 @@
 import { store } from "../store.js";
 import { getLatestProgression } from "../services/progressionService.js";
 import { getExerciseType, parseRepRange, parseDuration, getExerciseRest } from "../domain/exerciseEngine.js";
+import { t, translateExercise, translateRating } from "../services/languageService.js";
 
 function formatTargetValue(val, isTime) {
     if (!val) return '—';
@@ -37,7 +38,8 @@ export const detailsView = {
     async render(params) {
         try {
             const res = await fetch("./data/exercises.json");
-            this.exercises = await res.json();
+            const rawExercises = await res.json();
+            this.exercises = (rawExercises || []).map(ex => translateExercise(ex));
         } catch (e) {
             console.error("Failed to load exercises.json", e);
             this.exercises = [];
@@ -65,11 +67,10 @@ export const detailsView = {
             <div class="view-details animate-fade-in">
 
                 <div class="mb-3">
-                    <h1>Exercise Library</h1>
+                    <h1>${t('details.libraryTitle')}</h1>
 
                     <p class="text-muted">
-                        Explore gentle beginner exercises with step-by-step
-                        posture illustrations & safety tips.
+                        ${t('details.librarySubtitle')}
                     </p>
                 </div>
 
@@ -140,7 +141,7 @@ export const detailsView = {
         const equipmentText = ex.equipment && typeof ex.equipment === 'string' ? ex.equipment.trim() : '';
         const validMuscles = Array.isArray(ex.muscles) ? ex.muscles.filter(m => m && typeof m === 'string' && m.trim()) : [];
         const isTime = getExerciseType(ex) === 'time';
-        const targetLabel = isTime ? 'Duration' : 'Reps';
+        const targetLabel = isTime ? t('details.duration') : t('details.reps');
         const restSec = getExerciseRest(ex) || (typeof ex.rest === 'number' ? ex.rest : 45);
 
         let recommendationHTML = '';
@@ -168,24 +169,18 @@ export const detailsView = {
             }
 
             const rawPerf = latestProgression.performance || 'good';
-            const ratingDisplayMap = {
-                'easy': 'Easy',
-                'good': 'Good',
-                'difficult': 'Difficult',
-                'too_difficult': 'Too Difficult'
-            };
-            const perfLabel = ratingDisplayMap[rawPerf.toLowerCase()] || 'Good';
+            const perfLabel = translateRating(rawPerf);
 
             recommendationHTML = `
                 <div class="card card-accent mb-3 exercise-recommendation-card">
                     <div class="text-center font-bold mb-2 text-muted" style="font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;">
-                        YOUR NEXT TARGET
+                        ${t('details.yourNextTarget')}
                     </div>
 
                     <div class="exercise-recommendation mb-2">
                         <div class="exercise-recommendation__item">
                             <span class="text-muted exercise-recommendation__label">
-                                Sets
+                                ${t('details.sets')}
                             </span>
                             <div class="font-bold exercise-recommendation__value">
                                 ${recSets}
@@ -206,12 +201,12 @@ export const detailsView = {
 
                     <div class="text-center text-muted" style="font-size: 0.85rem; border-top: 1px dashed #FFE0B2; padding-top: 0.6rem; margin-top: 0.6rem;">
                         <p class="mb-1" style="font-weight: 600;">
-                            Based on your recent performance
+                            ${t('details.basedOnRecentPerf')}
                         </p>
                         <div style="font-size: 0.8rem; opacity: 0.9;">
-                            <span>Previous: ${prevSets} × ${prevTargetStr}</span>
+                            <span>${t('details.previous')} ${prevSets} × ${prevTargetStr}</span>
                             <span style="margin: 0 0.4rem;">•</span>
-                            <span>Feedback: ${perfLabel}</span>
+                            <span>${t('details.feedback')} ${perfLabel}</span>
                         </div>
                     </div>
                 </div>
@@ -222,13 +217,13 @@ export const detailsView = {
             recommendationHTML = `
                 <div class="card card-accent mb-3 exercise-recommendation-card">
                     <div class="text-center font-bold mb-2 text-muted" style="font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;">
-                        RECOMMENDED TRAINING
+                        ${t('details.recommendedTraining')}
                     </div>
 
                     <div class="exercise-recommendation">
                         <div class="exercise-recommendation__item">
                             <span class="text-muted exercise-recommendation__label">
-                                Sets
+                                ${t('details.sets')}
                             </span>
                             <div class="font-bold exercise-recommendation__value">
                                 ${ex.sets}
@@ -250,10 +245,10 @@ export const detailsView = {
 
                         <div class="exercise-recommendation__item">
                             <span class="text-muted exercise-recommendation__label">
-                                Rest
+                                ${t('details.rest')}
                             </span>
                             <div class="font-bold exercise-recommendation__value">
-                                ${restSec} sec
+                                ${t('details.secUnit', { sec: restSec })}
                             </div>
                         </div>
                     </div>
@@ -270,7 +265,7 @@ export const detailsView = {
                         href="#details"
                         class="exercise-back-link"
                     >
-                        ← Back to All Exercises
+                        ${t('details.backLink')}
                     </a>
                 </div>
 
@@ -300,7 +295,7 @@ export const detailsView = {
                         <div class="flex gap-2 text-muted mb-3 exercise-detail-equipment">
                             <span>
                                 🏋️
-                                <strong>Equipment:</strong>
+                                <strong>${t('details.equipmentLabel')}</strong>
                                 ${equipmentText}
                             </span>
                         </div>
@@ -311,7 +306,7 @@ export const detailsView = {
                         <div class="mb-3">
 
                             <h3 class="mb-1 exercise-section-title">
-                                Muscles Targeted:
+                                ${t('details.musclesTargeted')}
                             </h3>
 
                             <div class="flex gap-1 flex-wrap">
@@ -334,7 +329,7 @@ export const detailsView = {
                     <div class="mb-3">
 
                         <h3 class="mb-1 exercise-section-title">
-                            Step-by-Step Instructions:
+                            ${t('details.instructionsTitle')}
                         </h3>
 
                         <ol class="exercise-instructions">
@@ -353,7 +348,7 @@ export const detailsView = {
                     <div class="mb-3 card exercise-mistakes">
 
                         <h3 class="mb-1">
-                            ⚠️ Common Mistakes to Avoid:
+                            ${t('details.mistakesTitle')}
                         </h3>
 
                         <ul class="exercise-mistakes__list">
@@ -372,7 +367,7 @@ export const detailsView = {
                     <div class="card exercise-breathing">
 
                         <h3 class="mb-1">
-                            🌬️ Proper Breathing Technique:
+                            ${t('details.breathingTitle')}
                         </h3>
 
                         <p>
@@ -386,7 +381,7 @@ export const detailsView = {
                         onclick="location.hash='player?exercise=${ex.id}'"
                         class="btn btn-primary ripple mt-3"
                     >
-                        ▶ Practice This Exercise Now
+                        ${t('details.practiceBtn')}
                     </button>
 
                 </div>
