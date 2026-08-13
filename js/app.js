@@ -63,23 +63,16 @@ class ParentfitApp {
   }
 
   applySettingsTheme() {
-    const { darkMode, fontSize } = store.state.settings;
+    const { darkMode } = store.state.settings;
+
+    // Standard root font size (16px)
+    document.documentElement.style.fontSize = '16px';
 
     // Dark Mode class
     if (darkMode) {
       document.body.classList.add('dark-mode');
     } else {
       document.body.classList.remove('dark-mode');
-    }
-
-    // Font Legibility Size
-    if (fontSize === 'xlarge') {
-      document.documentElement.style.fontSize = '22px';
-    } else if (fontSize === 'normal') {
-      document.documentElement.style.fontSize = '16px';
-    } else {
-      // Large (Default Senior Friendly)
-      document.documentElement.style.fontSize = '19px';
     }
   }
 

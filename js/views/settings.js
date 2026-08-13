@@ -5,7 +5,7 @@ import { t } from '../services/languageService.js';
 
 export const settingsView = {
   async render() {
-    const { userName, darkMode, soundEnabled, fontSize, targetWeight, language } = store.state.settings;
+    const { userName, darkMode, soundEnabled, targetWeight, language } = store.state.settings;
 
     return `
       <div class="view-settings animate-fade-in">
@@ -36,15 +36,6 @@ export const settingsView = {
             <button id="settings-sound-toggle" class="btn btn-outline" style="width: auto; min-height: 44px; padding: 0.4rem 1.25rem;">
               ${soundEnabled ? t('settings.soundOnStatus') : t('settings.soundOffStatus')}
             </button>
-          </div>
-
-          <div class="input-group mb-3">
-            <label class="input-label" for="settings-text-size">${t('settings.textSizeLabel')}</label>
-            <select id="settings-text-size" class="input-field">
-              <option value="normal" ${fontSize === 'normal' ? 'selected' : ''}>${t('settings.sizeNormal')}</option>
-              <option value="large" ${fontSize === 'large' ? 'selected' : ''}>${t('settings.sizeLarge')}</option>
-              <option value="xlarge" ${fontSize === 'xlarge' ? 'selected' : ''}>${t('settings.sizeXLarge')}</option>
-            </select>
           </div>
 
           <!-- Language Selection -->
@@ -111,7 +102,6 @@ export const settingsView = {
   postRender() {
     const darkToggle = document.getElementById('settings-dark-toggle');
     const soundToggle = document.getElementById('settings-sound-toggle');
-    const textSizeSelect = document.getElementById('settings-text-size');
     const langEnBtn = document.getElementById('lang-en-btn');
     const langHiBtn = document.getElementById('lang-hi-btn');
     const langJaBtn = document.getElementById('lang-ja-btn');
@@ -127,12 +117,6 @@ export const settingsView = {
     if (soundToggle) {
       soundToggle.onclick = () => {
         store.updateSettings({ soundEnabled: !store.state.settings.soundEnabled });
-      };
-    }
-
-    if (textSizeSelect) {
-      textSizeSelect.onchange = (e) => {
-        store.updateSettings({ fontSize: e.target.value });
       };
     }
 
