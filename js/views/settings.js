@@ -57,6 +57,9 @@ export const settingsView = {
               <button id="lang-hi-btn" class="btn ${language === 'Hindi' ? 'btn-primary' : 'btn-outline'}" style="flex: 1; min-height: 48px; font-size: 1rem;">
                 ${t('settings.languageHindi')}
               </button>
+              <button id="lang-ja-btn" class="btn ${language === 'Japanese' ? 'btn-primary' : 'btn-outline'}" style="flex: 1; min-height: 48px; font-size: 1rem;">
+                ${t('settings.languageJapanese')}
+              </button>
             </div>
           </div>
         </div>
@@ -111,6 +114,7 @@ export const settingsView = {
     const textSizeSelect = document.getElementById('settings-text-size');
     const langEnBtn = document.getElementById('lang-en-btn');
     const langHiBtn = document.getElementById('lang-hi-btn');
+    const langJaBtn = document.getElementById('lang-ja-btn');
     const saveProfileBtn = document.getElementById('settings-save-profile-btn');
     const resetDataBtn = document.getElementById('settings-reset-data-btn');
 
@@ -141,6 +145,12 @@ export const settingsView = {
     if (langHiBtn) {
       langHiBtn.onclick = () => {
         store.updateSettings({ language: 'Hindi' });
+      };
+    }
+
+    if (langJaBtn) {
+      langJaBtn.onclick = () => {
+        store.updateSettings({ language: 'Japanese' });
       };
     }
 

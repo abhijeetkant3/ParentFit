@@ -174,6 +174,7 @@ export const en = {
     languageLabel: "Language:",
     languageEnglish: "English",
     languageHindi: "हिंदी",
+    languageJapanese: "日本語",
     userProfile: "User Profile",
     yourName: "Your Name:",
     targetWeight: "Target Weight (kg):",
