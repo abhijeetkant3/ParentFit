@@ -174,6 +174,7 @@ export const hi = {
     languageLabel: "भाषा:",
     languageEnglish: "English",
     languageHindi: "हिंदी",
+    languageJapanese: "日本語",
     userProfile: "उपयोगकर्ता प्रोफ़ाइल",
     yourName: "आपका नाम:",
     targetWeight: "लक्ष्य वजन (किग्रा):",

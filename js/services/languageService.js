@@ -2,14 +2,16 @@
 import { store } from '../store.js';
 import { en } from '../translations/en.js';
 import { hi } from '../translations/hi.js';
+import { ja } from '../translations/ja.js';
 
 const dictionaries = {
   English: en,
-  Hindi: hi
+  Hindi: hi,
+  Japanese: ja
 };
 
 /**
- * Gets the current active language token ('English' | 'Hindi').
+ * Gets the current active language token ('English' | 'Hindi' | 'Japanese').
  */
 export function getCurrentLanguage() {
   return store.state.settings.language || 'English';
@@ -74,7 +76,7 @@ function getNestedValue(obj, keyPath) {
 }
 
 /**
- * Translates day names ('Monday' -> 'सोमवार' in Hindi, 'Monday' in English).
+ * Translates day names ('Monday' -> 'सोमवार' in Hindi, '月曜日' in Japanese, 'Monday' in English).
  */
 export function translateDay(dayName) {
   if (!dayName) return '';
@@ -82,7 +84,7 @@ export function translateDay(dayName) {
 }
 
 /**
- * Translates rating internal tokens ('easy' -> 'Easy'/'आसान').
+ * Translates rating internal tokens ('easy' -> 'Easy'/'आसान'/'簡単').
  */
 export function translateRating(rating) {
   if (!rating) return '';
@@ -96,22 +98,24 @@ export function translateRating(rating) {
  */
 export function translateExercise(exercise) {
   if (!exercise || typeof exercise !== 'object') return exercise;
-  if (!isHindi()) return exercise;
+  
+  const currentLang = getCurrentLanguage();
+  if (currentLang === 'English') return exercise;
 
-  const exId = exercise.id;
-  const hiEx = hi.exercises?.[exId];
+  const dict = dictionaries[currentLang];
+  const langEx = dict?.exercises?.[exercise.id];
 
-  if (!hiEx) return exercise;
+  if (!langEx) return exercise;
 
   return {
     ...exercise,
-    name: hiEx.name || exercise.name,
-    difficulty: hiEx.difficulty || exercise.difficulty,
-    equipment: hiEx.equipment || exercise.equipment,
-    muscles: Array.isArray(hiEx.muscles) ? [...hiEx.muscles] : exercise.muscles,
-    instructions: Array.isArray(hiEx.instructions) ? [...hiEx.instructions] : exercise.instructions,
-    mistakes: Array.isArray(hiEx.mistakes) ? [...hiEx.mistakes] : exercise.mistakes,
-    breathing: hiEx.breathing || exercise.breathing
+    name: langEx.name || exercise.name,
+    difficulty: langEx.difficulty || exercise.difficulty,
+    equipment: langEx.equipment || exercise.equipment,
+    muscles: Array.isArray(langEx.muscles) ? [...langEx.muscles] : exercise.muscles,
+    instructions: Array.isArray(langEx.instructions) ? [...langEx.instructions] : exercise.instructions,
+    mistakes: Array.isArray(langEx.mistakes) ? [...langEx.mistakes] : exercise.mistakes,
+    breathing: langEx.breathing || exercise.breathing
   };
 }
 
@@ -123,37 +127,44 @@ export function translateWorkoutPlan(plan) {
   if (!plan || typeof plan !== 'object') return plan;
 
   const translatedDay = translateDay(plan.day);
+  const currentLang = getCurrentLanguage();
 
-  if (!isHindi()) {
+  if (currentLang === 'English') {
     return {
       ...plan,
       displayDay: translatedDay
     };
   }
 
-  const titleHi = hi.plans?.[plan.title] || plan.title;
-  const focusHi = hi.plans?.[plan.focus] || plan.focus;
-  const intensityHi = hi.plans?.[plan.intensity] || plan.intensity;
+  const dict = dictionaries[currentLang];
+  const titleTrans = dict?.plans?.[plan.title] || plan.title;
+  const focusTrans = dict?.plans?.[plan.focus] || plan.focus;
+  const intensityTrans = dict?.plans?.[plan.intensity] || plan.intensity;
 
   return {
     ...plan,
     displayDay: translatedDay,
-    title: titleHi,
-    focus: focusHi,
-    intensity: intensityHi
+    title: titleTrans,
+    focus: focusTrans,
+    intensity: intensityTrans
   };
 }
 
 /**
- * Translates nutrition tips & meal ideas if Hindi is selected.
+ * Translates nutrition tips & meal ideas if target language is selected.
  */
 export function translateNutritionData(data) {
   if (!data || typeof data !== 'object') return data;
-  if (!isHindi()) return data;
+  
+  const currentLang = getCurrentLanguage();
+  if (currentLang === 'English') return data;
+
+  const dict = dictionaries[currentLang];
 
   return {
     ...data,
-    dailyTips: hi.nutritionData?.dailyTips || data.dailyTips,
-    mealIdeas: hi.nutritionData?.mealIdeas || data.mealIdeas
+    dailyTips: dict?.nutritionData?.dailyTips || data.dailyTips,
+    mealIdeas: dict?.nutritionData?.mealIdeas || data.mealIdeas
   };
 }
+
