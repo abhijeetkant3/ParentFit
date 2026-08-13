@@ -13,7 +13,6 @@ const DEFAULT_SETTINGS = {
   userName: 'Mom',
   darkMode: false,
   soundEnabled: true,
-  fontSize: 'large', // 'normal', 'large', 'xlarge'
   targetWeight: 65,
   language: 'English'
 };
